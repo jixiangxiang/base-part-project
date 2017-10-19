@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eric.web.dao.InterVieweeDao">
+    <resultMap id="BaseResultMap" type="com.eric.web.domain.Interviewee">
+        <result column="id" property="id"/>
+        <result column="phone" property="phone"/>
+        <result column="wx_name" property="wxName"/>
+        <result column="wx_avatar" property="wxAvatar"/>
+    </resultMap>
+
+    <parameterMap id="Interviewee" type="com.eric.web.domain.Interviewee"/>
+
+    <sql id="Base_Column_List">
+		id, phone, wx_name, wx_avatar
+	</sql>
+
+    <select id="getInterviewees" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from interviewee
+    </select>
+    <select id="getInterviewee" resultMap="BaseResultMap" parameterType="long">
+        select
+        <include refid="Base_Column_List"/>
+        from interviewee
+        WHERE id = #{id}
+    </select>
+
+
+</mapper>
